@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+                                                               Simplon.co 
+                                                                              YouCode
+                                                                                -SAFI-
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+                                                  Rapport de Fil rouge
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+SOCIAL MEDIA
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1ère année développement web
 
-### Premium Partners
+                                                                                                       Réalisé par :
+ABD-ELHAQ AZROUR
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Encadré par :
+HOUSNI OUCHAD
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+Cahier de Charge: Social-Media
+Problématique
+Définition:
+L'objectif de ce projet est de développer une plateforme de réseaux sociaux robuste qui facilite la communication, le partage de contenu et l'engagement communautaire pour les utilisateurs de divers intérêts et de différentes démographiques.
+Liste de Problèmes Identifiés:
+Manque de plateforme de médias sociaux offrant une combinaison optimale de fonctionnalités avancées et de convivialité.
+Besoin d'une solution sécurisée et respectueuse de la vie privée pour les utilisateurs.
+Recherche de fonctionnalités innovantes pour améliorer l'engagement des utilisateurs.
+Présentation du Contexte
+Le contexte actuel est marqué par une utilisation massive des médias sociaux, soulignant le besoin d'une plateforme qui offre une expérience utilisateur riche, une gestion avancée des groupes et une personnalisation optimale. Le marché actuel est également confronté à des préoccupations croissantes liées à la sécurité et à la vie privée.
+Description Fonctionnelle et Technique
+Fonctionnalités Principales:
+Authentification Utilisateur:
+Enregistrement, connexion et gestion sécurisée des profils.
+Collecte d'informations essentielles telles que nom, email, mot de passe, photo de profil, bio, etc.
+Possibilité de personnaliser les paramètres de confidentialité.
+Authentification avec google …
+vérification avant de log in
+Publications:
+Création, édition et suppression de publications avec support pour texte, images, vidéos, liens, etc.
+Fonctionnalités avancées telles que la mise en forme du texte, les hashtags, et la spécification de la visibilité des publications (public, amis seulement, privé).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Réactions et Commentaires:
+Possibilité pour les utilisateurs de réagir aux publications avec des émoticônes.
+Système de commentaires permettant aux utilisateurs de laisser des commentaires et de répondre aux commentaires.
+Ping de Propres Publications:
+Mise en œuvre d'une fonctionnalité permettant aux utilisateurs de "pinguer" leurs propres publications pour les ramener en haut des fils d'actualité de leurs abonnés.
+Groupes:
+Création de groupes basés sur des intérêts, des hobbies ou des communautés.
+Outils d'administration pour modérer le contenu, inviter ou approuver des membres, et définir des règles pour les groupes.
+Abonnés et Abonnements:
+Permet aux utilisateurs de suivre/dessuivre d'autres utilisateurs pour rester informés de leurs activités et publications.
+Affiche les listes d'abonnés/d'abonnements sur les profils des utilisateurs et offre des options pour gérer les abonnés.
+Recherche:
+Implémentation d'une fonction de recherche robuste permettant aux utilisateurs de découvrir d'autres utilisateurs, publications, groupes et hashtags.
+Page de Profil:
+Conception de profils d'utilisateurs avec des sections personnalisables pour afficher des informations, des publications, des photos/vidéos, et un historique d'activités.
+Onglets ou sections pour afficher des publications, des photos/vidéos, des amis/abonnés, des groupes, et d'autres informations pertinentes.
+Bonus: Intégration d'IA
+Chat entre les utilisateurs
+Une fonction de chat en temps réel
+Intégration d'IA (bonus):
+Exploration de l'intégration de l'IA pour générer des publications suggérées basées sur les intérêts, les préférences et l'activité précédente des utilisateurs.
+Mise en œuvre de chatbots alimentés par l'IA pour aider les utilisateurs à créer des publications, répondre aux questions, et faciliter la communication entre les utilisateurs.
+Qui Peut Utiliser le Site
+Le site est destiné à toute personne désireuse de partager des contenus, de se connecter avec d'autres utilisateurs, de participer à des discussions de groupe, et d'explorer des communautés d'intérêt.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Périmètre du Projet
+Le périmètre du projet comprend le développement complet de la plateforme Social-Media Connect, de l'authentification utilisateur aux fonctionnalités avancées, en mettant l'accent sur une expérience utilisateur optimale et la sécurité des données.
+Technologies Utilisées
+Les technologies clés pour le développement incluent:
+Backend : Framework Laravel
+Frontend : Framework Vue.js ou react
+Base de Données : MySQL ou PostgreSQL
+Outils Additionnels : Git pour le contrôle de version, Postman pour les tests d'API, Docker pour la conteneurisation.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
