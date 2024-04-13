@@ -6,5 +6,5 @@ import { Head } from '@inertiajs/vue3';
 <template>
     <Head title="WEMEET" />
 
-    <h1 class="bg-red">test</h1>
+    <h1 class='text-sm bg-gray-200'>test</h1>
 </template>
