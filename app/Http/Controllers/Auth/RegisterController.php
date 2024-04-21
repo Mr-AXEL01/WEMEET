@@ -48,7 +48,6 @@ class RegisterController extends Controller
         while (User::where('username', $username)->exists()) {
             $username = $cleanedName . $suffix++;
         }
-
         return $username;
     }
 }
