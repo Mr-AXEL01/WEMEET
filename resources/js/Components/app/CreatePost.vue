@@ -1,6 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
+import TextInput from "../TextInput.vue";
 
 const postCreating = ref(false)
 
@@ -8,9 +9,9 @@ const postCreating = ref(false)
 
 <template>
     <div class="p-4 bg-white rounded-lg border mb-3">
-        <div @click="postCreating = true" class="py-3 px-2 text-gray-400 border border-2 border-gray-200 rounded mb-3">
-            click here to create new posts
-        </div>
+        <TextInput @click="postCreating = true"
+                   class="py-3 px-2 text-gray-400 border border-2 border-gray-200 rounded mb-3 w-full" placeholder="Click here to create new posts">
+        </TextInput>
         <div v-if="postCreating" class="flex gap-2 justify-between ">
             <button type="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold

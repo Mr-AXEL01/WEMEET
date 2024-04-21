@@ -1,13 +1,14 @@
 <script setup>
 
-import FollowingListItems from "./FollowingListItems.vue";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
+import FollowingListItems from "./FollowingListItems.vue";
+
 
 
 </script>
 
 <template>
-    <div class="px-3 bg-white rounded border h-full py-3 overflow-hidden">
+    <div class="px-3 bg-white rounded border py-3 h-full overflow-hidden">
         <div class="block lg:hidden">
             <Disclosure v-slot="{ open }">
                 <DisclosureButton class="text-left w-full">
@@ -28,10 +29,12 @@ import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
                 </DisclosurePanel>
             </Disclosure>
         </div>
-        <div class="h-full overflow-hidden flex-col hidden lg:flex">
-            <h2 class="text-xl font-bold">
-                My Followings
-            </h2>
+        <div class="h-[70vh] overflow-hidden flex-col hidden lg:flex">
+            <div class="flex justify-between">
+                <h2 class="text-xl font-bold">
+                    My Followings
+                </h2>
+            </div>
             <FollowingListItems />
         </div>
     </div>
