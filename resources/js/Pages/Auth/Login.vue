@@ -33,14 +33,19 @@
                          class="text-red-500 text-xs mt-1">
 
                     </div>
-
-                    <div class="mb-6 mt-[1.5rem]">
-                        <button type="submit" class="bg-blue-400 text-white rounded-lg py-2 px-4 hover:bg-blue-500">
-                            Log In
-                        </button>
-                    </div>
+                </div>
+                <div class="mb-6">
+                    <button type="submit" class="bg-blue-400 text-white rounded-lg py-2 px-4 hover:bg-blue-500">
+                        Log In
+                    </button>
                 </div>
             </form>
+            <p class="mt-10 text-center text-sm text-gray-500">
+                Not a member?
+                <a href="/register" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                    create new account
+                </a>
+            </p>
         </section>
     </main>
 </template>
