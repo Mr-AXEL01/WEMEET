@@ -67,7 +67,7 @@ const post2 = {
 </script>
 
 <template>
-    <div class="overflow-auto">
+    <div class="overflow-auto lg:h-[77vh]">
         <PostItem :post="post1"/>
         <PostItem :post="post2"/>
     </div>
