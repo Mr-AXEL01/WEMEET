@@ -31,7 +31,7 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
-    public function logout(Request $request) {
+    public function destroy(Request $request) {
         auth()->logout();
         $request->session()->invalidate();
 
