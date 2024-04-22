@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,15 +12,15 @@ Route::get('register', [RegisterController::class, 'create'])->name('register');
 Route::post('register', [RegisterController::class, 'store']);
 Route::get("/login", [LoginController::class, 'create'])->name("login");
 Route::post("/login", [LoginController::class, 'store']);
-Route::post('/logout',[LoginController::class, 'destroy'])->name("logout");
+Route::post('/logout',[LoginController::class, 'destroy'])->middleware('auth')->name("logout");
 
 
 Route::group(["middleware" => "auth"], function () {
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-    Route::get('/u/{username}', [HomeController::class,'index'])->name('profile');
 });
 
+    Route::get('/u/{user:username}', [ProfileController::class,'index'])->name('profile');
 
 
 
