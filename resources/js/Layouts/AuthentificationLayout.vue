@@ -1,6 +1,6 @@
 <template>
     <section class="h-full overflow-hidden flex flex-col p-3 bg-gray-100">
-        <header class="flex justify-between">
+        <header class="flex justify-between w-[95%] mx-auto">
             <Link href="/">
                 <h1 class="font-bold text-2xl">WEMEET</h1>
             </Link>
