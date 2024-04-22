@@ -9,7 +9,7 @@
                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/d95c1f148207527.62d1246c25004.jpg" alt="avatar"
                         class="rounded-full w-[128px] h-[128px] ml-[48px] -mt-[80px]"
                    >
-                   <div class="flex justify-between items-center flex-1  px-2 py-1">
+                   <div class="flex justify-between items-center flex-1  px-2">
                        <div>
                            <h2 class="font-bold lg:text-lg">
                                {{user.name}}
@@ -18,7 +18,7 @@
                                {{user.username}}
                            </small>
                        </div>
-                       <button class="flex items-center space-x-2 text-white p-2 rounded-lg bg-gray-700 border">
+                       <button v-if="isMyProfile" class="flex items-center space-x-2 text-white p-2 rounded-lg bg-gray-700 border">
                            <PencilIcon class="w-[13px] lg:w-5 lg:h-5 " />
                            <p class="md:block hidden">Edit profile</p>
                        </button>
@@ -28,7 +28,7 @@
             <div class="border-t">
                 <TabGroup>
                     <TabList class="flex bg-white flex-wrap">
-                        <Tab v-slot="{ selected }" as="template">
+                        <Tab v-if="isMyProfile" v-slot="{ selected }" as="template">
                             <TabItem text="About" :selected="selected" />
                         </Tab>
                         <Tab v-slot="{ selected }" as="template">
@@ -46,7 +46,7 @@
                     </TabList>
 
                     <TabPanels class="mt-2">
-                        <TabPanel key="about" class="bg-white p-3 shadow">
+                        <TabPanel v-if="isMyProfile" key="about" class="bg-white p-3 shadow">
                             About Content
                         </TabPanel>
                         <TabPanel key="posts" class="bg-white p-3 shadow">
@@ -74,8 +74,13 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import AuthentificationLayout from "../../Layouts/AuthentificationLayout.vue";
 import TabItem from "./Partials/TabItem.vue";
 import { PencilIcon } from '@heroicons/vue/24/solid';
+import {usePage} from "@inertiajs/vue3";
+import {computed } from "vue";
+const authUser = usePage().props.auth.user;
 
-defineProps({
+const isMyProfile = computed(() => authUser && authUser.id === props.user.id);
+
+const props = defineProps({
     user: {
         type: Object
     }
