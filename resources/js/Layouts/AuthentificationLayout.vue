@@ -1,7 +1,9 @@
 <template>
     <section class="h-full overflow-hidden flex flex-col p-3 bg-gray-100">
         <header class="flex justify-between">
-            <h1 class="font-bold text-2xl">My app</h1>
+            <Link href="/">
+                <h1 class="font-bold text-2xl">WEMEET</h1>
+            </Link>
             <Nav />
         </header>
     </section>
@@ -13,9 +15,10 @@
 
 </template>
 
-<script>
+<script setup>
 import Nav from '../Components/Nav.vue';
-export default {
-    components: { Nav },
-};
+import {Link} from "@inertiajs/vue3";
+
+
+
 </script>
