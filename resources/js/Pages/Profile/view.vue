@@ -1,5 +1,5 @@
 <template>
-    <AuthentificationLayout>
+    <AuthenticationLayout>
         <div class="w-[80%] h-full mx-auto overflowY-auto">
             <div
                 v-show="showNotification && status === 'cover-update'"
@@ -89,13 +89,13 @@
                 </TabGroup>
             </div>
         </div>
-    </AuthentificationLayout>
+    </AuthenticationLayout>
 
 </template>
 
 <script setup>
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
-import AuthentificationLayout from "../../Layouts/AuthentificationLayout.vue";
+import AuthenticationLayout from "../../Layouts/AuthenticationLayout.vue";
 import TabItem from "./Partials/TabItem.vue";
 import { PencilIcon , PhotoIcon , XMarkIcon , CheckIcon } from '@heroicons/vue/24/solid';
 import {useForm, usePage} from "@inertiajs/vue3";
@@ -140,7 +140,6 @@ function cancelCoverImage() {
 }
 
 function submitCoverImage() {
-    console.log(imagesForm.cover)
     imagesForm.post(route('profile.updateCover'), {
         onSuccess: (user) => {
             cancelCoverImage()
