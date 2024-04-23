@@ -5,17 +5,29 @@
                 <img :src="coverImageSrc || user.cover_url || '/img/default_cover.jpg' " alt="cover"
                      class="w-full h-[200px] object-cover rounded-lg"
                 >
-                <button class="absolute top-2 right-2 p-2 opacity-0 group-hover:opacity-100">
-                    <PhotoIcon class="w-4 h-4 text-white" />
-                    <input type="file" class="absolute left-0 op-0 bottom-0 right-0 opacity-0 cursor-pointer"
-                           @change="onCoverChange"
-                    />
-                </button>
+                <div class="absolute top-2 right-2">
+                    <button v-if="!coverImageSrc" class="bg-gray-50 hover:bg-gray-100 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                        <PhotoIcon class="w-3 h-3 text-blue-500" />
+                        <input type="file" class="absolute left-0 op-0 bottom-0 right-0 opacity-0 cursor-pointer"
+                               @change="onCoverChange"
+                        />
+                    </button>
+                    <div v-else class="flex gap-2">
+                        <button @click="cancelCoverImage" class="flex items-center p-1 gap-1 text-xs rounded-lg bg-gray-50 text-red-500 hover:bg-red-500 hover:text-white ">
+                            <XMarkIcon class="w-3 h-3" />
+                            cancel
+                        </button>
+                        <button @click="submitCoverImage" class="flex items-center p-1 gap-1 text-xs rounded-lg bg-gray-50 text-green-500 hover:bg-green-500 hover:text-white">
+                            <CheckIcon class="w-3 h-3" />
+                            submit
+                        </button>
+                    </div>
+                </div>
                <div class="flex">
                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/d95c1f148207527.62d1246c25004.jpg" alt="avatar"
                         class="rounded-full w-[128px] h-[128px] ml-[48px] -mt-[80px]"
                    >
-                   <div class="flex justify-between items-center flex-1  px-2">
+                   <div class="flex justify-between items-center flex-1 lg:mx-3 pb-2 px-2">
                        <div>
                            <h2 class="font-bold lg:text-lg">
                                {{user.name}}
@@ -24,9 +36,9 @@
                                {{user.username}}
                            </small>
                        </div>
-                       <button v-if="isMyProfile" class="flex items-center space-x-2 text-white p-2 rounded-lg bg-gray-700 border">
+                       <button v-if="isMyProfile" class="flex items-center space-x-2 text-white p-2 rounded-[10px] bg-blue-950 hover:bg-gray-20;fmop0 hover:text-gray-800 border-2">
                            <PencilIcon class="w-[13px] lg:w-5 lg:h-5 " />
-                           <p class="md:block hidden">Edit profile</p>
+                           <b class="md:block hidden">Edit profile</b>
                        </button>
                    </div>
                </div>
@@ -79,10 +91,11 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import AuthentificationLayout from "../../Layouts/AuthentificationLayout.vue";
 import TabItem from "./Partials/TabItem.vue";
-import { PencilIcon , PhotoIcon } from '@heroicons/vue/24/solid';
+import { PencilIcon , PhotoIcon , XMarkIcon , CheckIcon } from '@heroicons/vue/24/solid';
 import {usePage} from "@inertiajs/vue3";
 import {computed, ref} from "vue";
 
+let coverImageFile = null;
 const coverImageSrc = ref('');
 const authUser = usePage().props.auth.user;
 const isMyProfile = computed(() => authUser && authUser.id === props.user.id);
@@ -94,16 +107,23 @@ const props = defineProps({
 });
 
 
-function onCoverChange(event)
-{
-    console.log(event)
-    const file = event.target.files[0]
-    if(file){
+function onCoverChange(event) {
+    const coverImageFile = event.target.files[0]
+    if(coverImageFile){
         const reader = new FileReader()
         reader.onload = () => {
             coverImageSrc.value = reader.result;
         }
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(coverImageFile)
     }
 }
+
+function cancelCoverImage() {
+    coverImageFile = null;
+}
+
+function submitCoverImage() {
+
+}
+
 </script>
