@@ -15,4 +15,13 @@ class ProfileController extends Controller
             'user' => new UserResource($user)
         ]);
     }
+
+    public function updateImage(Request $request)
+    {
+        $data = $request->validate([
+            'cover' => ['nullable','image'],
+            'avatar' => ['nullable','image'],
+        ]);
+        dd($data);
+    }
 }
