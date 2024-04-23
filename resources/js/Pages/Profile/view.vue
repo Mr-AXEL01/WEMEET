@@ -1,6 +1,12 @@
 <template>
     <AuthentificationLayout>
-        <div class="w-[80%] h-full mx-auto">
+        <div class="w-[80%] h-full mx-auto overflowY-auto">
+            <div
+                v-show="showNotification && status === 'cover-update'"
+                class="lg:w-[35%] my-2 py-2 px-3 font-medium text-sm bg-green-600 text-white rounded-lg"
+            >
+                Your cover image has been updated successfully
+            </div>
             <div class="group relative bg-white">
                 <img :src="coverImageSrc || user.cover_url || '/img/default_cover.jpg' " alt="cover"
                      class="w-full h-[200px] object-cover rounded-lg"
@@ -92,38 +98,57 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import AuthentificationLayout from "../../Layouts/AuthentificationLayout.vue";
 import TabItem from "./Partials/TabItem.vue";
 import { PencilIcon , PhotoIcon , XMarkIcon , CheckIcon } from '@heroicons/vue/24/solid';
-import {usePage} from "@inertiajs/vue3";
+import {useForm, usePage} from "@inertiajs/vue3";
 import {computed, ref} from "vue";
 
-let coverImageFile = null;
+const imagesForm = useForm({
+   avatar: null,
+    cover:null,
+});
+
+const showNotification = ref(true)
+const avatarImageSrc = ref('');
 const coverImageSrc = ref('');
 const authUser = usePage().props.auth.user;
 const isMyProfile = computed(() => authUser && authUser.id === props.user.id);
 
+
 const props = defineProps({
+    errors: Object,
+    status: {
+      type: String,
+    },
     user: {
         type: Object
     }
 });
 
-
 function onCoverChange(event) {
-    const coverImageFile = event.target.files[0]
-    if(coverImageFile){
+    imagesForm.cover = event.target.files[0]
+    if(imagesForm.cover){
         const reader = new FileReader()
         reader.onload = () => {
             coverImageSrc.value = reader.result;
         }
-        reader.readAsDataURL(coverImageFile)
+        reader.readAsDataURL(imagesForm.cover)
     }
 }
 
 function cancelCoverImage() {
-    coverImageFile = null;
+    imagesForm.cover = null;
+    coverImageSrc.value = null;
 }
 
 function submitCoverImage() {
-
+    console.log(imagesForm.cover)
+    imagesForm.post(route('profile.updateCover'), {
+        onSuccess: (user) => {
+            cancelCoverImage()
+            setTimeout(() => {
+                showNotification.value = false ;
+            }, 2000)
+        },
+    })
 }
 
 </script>
