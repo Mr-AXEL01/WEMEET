@@ -1,6 +1,8 @@
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist';
 import '../css/app.css';
+import {Ziggy} from "./ziggy.js";
 
 // ----------------start_of_Handling_Resize-------------
 function handleResize() {
@@ -20,6 +22,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue, Ziggy)
             .mount(el)
     },
 })
