@@ -1,6 +1,6 @@
 <template>
     <AuthenticationLayout>
-        <div class="w-[80%] h-full mx-auto">
+        <div class="max-w-[80%] h-full mx-auto ">
             <div
                 v-show="showNotification && success"
                 class="lg:w-[35%] my-2 py-2 px-3 font-medium text-sm bg-green-500 text-white rounded-lg"
@@ -13,7 +13,7 @@
             >
                 {{ errors.cover }}
             </div>
-            <div class="relative bg-white">
+            <div class="relative bg-white rounded-lg">
                 <div class="group/cover">
                     <img :src="coverImageSrc || user.cover_url || '/img/default_cover.jpg' " :alt="`${user.username}'s cover`"
                     class="w-full h-[200px] object-cover rounded-lg"
@@ -45,7 +45,7 @@
                         <img
                             :src="avatarImageSrc || user.avatar_url || '/img/default_avatar.jpg'"
                             :alt="`${user.username}'s avatar`"
-                            class="rounded-full w-[128px] h-[128px] ml-[48px] -mt-[80px]"
+                            class="rounded-full object-cover w-[128px] h-[128px] ml-[48px] -mt-[80px]"
                         >
                         <div v-if="isMyProfile" class="absolute flex flex-col left-[2.5rem] bottom-0 lg:bottom-1">
                             <div v-if="avatarImageSrc" class="flex gap-2 ml-2">
@@ -79,11 +79,6 @@
                                 {{ user.username }}
                             </small>
                         </div>
-                        <button v-if="isMyProfile"
-                                class="flex items-center space-x-2 text-white p-2 rounded-[10px] bg-blue-950 hover:bg-gray-200 hover:text-gray-800 border-2">
-                            <PencilIcon class="w-[13px] lg:w-5 lg:h-5 "/>
-                            <b class="md:block hidden">Edit profile</b>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -107,7 +102,7 @@
                         </Tab>
                     </TabList>
 
-                    <TabPanels class="mt-2">
+                    <TabPanels class="mt-2 lg:h-[32rem] lg:overflow-auto">
                         <TabPanel key="posts" class="bg-white p-3 shadow">
                             Post Content
                         </TabPanel>
