@@ -23,7 +23,7 @@
                     <li class="flex items-center space-x-1">
                         <UserCircleIcon class="w-5 h-5"/>
                         <Link :href="'/u/' + authUser.username" class="text-black hover:underline">
-                            {{authUser.username}}
+                            {{authUser.name}}
                         </Link>
                     </li>
                     <li class="flex items-center space-x-1">
