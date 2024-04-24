@@ -7,6 +7,7 @@
     <title >{{ config('app.name', 'WEMEET') }}</title>
 
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+    @routes
     @inertiaHead
 </head>
 <body class="font-sans antialiased bg-gray-100  lg:overflow-hidden lg:h-full">
