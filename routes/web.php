@@ -20,12 +20,17 @@ Route::post('/logout',[LoginController::class, 'destroy'])->middleware('auth')->
 
 
 Route::group(["middleware" => "auth"], function () {
-Route::post('/profile/update-images', [ProfileController::class, 'updateImage'])->name('profile.updateCover');
+
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::post('/profile/update-images', [ProfileController::class, 'updateImage'])
+        ->name('profile.updateImages');
 
 });
 
 //--------------------check_profile---------------------------------------
-Route::get('/u/{user:username}', [ProfileController::class,'index'])->name('profile');
+Route::get('/u/{user:username}', [ProfileController::class, 'index'])
+    ->name('profile');
 
 
 
