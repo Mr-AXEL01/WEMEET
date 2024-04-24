@@ -1,7 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
-import TextInput from "../TextInput.vue";
+import TextInput from "../Input.vue";
 
 const postCreating = ref(false)
 
