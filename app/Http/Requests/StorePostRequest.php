@@ -14,6 +14,11 @@ class StorePostRequest extends FormRequest
         return true;
     }
 
+    protected function passedValidation()
+    {
+        $this->merge(['user_id' => auth()->user()->id]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,9 +27,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'body' => ['nullable', 'string']
+            'body' => ['nullable', 'string'],
         ];
     }
-
-
 }
