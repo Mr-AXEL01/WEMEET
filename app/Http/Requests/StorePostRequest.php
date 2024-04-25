@@ -14,7 +14,7 @@ class StorePostRequest extends FormRequest
         return true;
     }
 
-    protected function passedValidation()
+    protected function prepareForValidation()
     {
         $this->merge(['user_id' => auth()->user()->id]);
     }
@@ -28,6 +28,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'body' => ['nullable', 'string'],
+            'user_id' =>['numeric','exists:users,id']
         ];
     }
 }
