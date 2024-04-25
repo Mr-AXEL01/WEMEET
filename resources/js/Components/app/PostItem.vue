@@ -1,7 +1,12 @@
 <script setup>
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
-import {ChevronDownIcon, PencilIcon, TrashIcon , EllipsisVerticalIcon} from '@heroicons/vue/20/solid'
+import {PencilIcon, TrashIcon , EllipsisVerticalIcon} from '@heroicons/vue/20/solid'
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
+import PostModel from "./PostModel.vue";
+import {ref} from "vue";
+import PostUserProfile from "./PostUserProfile.vue";
+
+const showEditModel = ref(false)
 
 defineProps({
     post: Object
@@ -17,30 +22,7 @@ function isImage(attachment) {
 <template>
     <div class="bg-white border rounded p-4 mb-3">
         <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-2">
-                <a href="javascript:void(0)">
-                    <img :src="post.user.avatar_url || '/img/default_avatar.jpg'"
-                         class="w-[40px] h-[40px] object-cover rounded-full border border-2 transition-all
-                     hover:border-blue-500"
-                    />
-                </a>
-                <div>
-                    <h4 class="font-bold">
-                        <a href="javascript:void(0)" class="hover:underline">
-                            {{ post.user.name }}
-                        </a>
-                        <template v-if="post.group">
-                            >
-                            <a href="javascript:void(0)" class="hover:underline">
-                                {{ post.group.name }}
-                            </a>
-                        </template>
-                    </h4>
-                    <small class="text-gray-400">
-                        {{ post.created_at }}
-                    </small>
-                </div>
-            </div>
+            <PostUserProfile :post="post" />
             <Menu as="div" class="relative inline-block text-left">
                 <div>
                     <MenuButton
@@ -67,6 +49,7 @@ function isImage(attachment) {
                         <div class="px-1 py-1">
                             <MenuItem v-slot="{ active }">
                                 <button
+                                    @click="showEditModel = true"
                                     :class="[
                   active ? 'bg-indigo-500 text-white' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
@@ -167,8 +150,5 @@ function isImage(attachment) {
             </button>
         </div>
     </div>
+    <PostModel :post="post" v-model="showEditModel" />
 </template>
-
-<style scoped>
-
-</style>
