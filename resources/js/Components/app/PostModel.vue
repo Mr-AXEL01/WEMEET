@@ -41,7 +41,12 @@
                                 </DialogTitle>
                                 <div class="p-4">
                                     <PostUserProfile :post="post" :show-time="false" class="mb-4"/>
-                                    <TextareaInput v-model="form.body" class="mb-3 py-1 px-2 w-full" />
+                                    <ckeditor :editor="editor"
+                                              v-model="form.body"
+                                              :config="editorConfig">
+
+                                    </ckeditor>
+<!--                                    <TextareaInput v-model="form.body" class="mb-3 py-1 px-2 w-full" />-->
                                 </div>
 
                                 <div class="py-2 px-3">
@@ -65,7 +70,7 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from 'vue';
+import {computed, watch} from 'vue';
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import {
     TransitionRoot,
@@ -77,7 +82,41 @@ import {
 import TextareaInput from "../TextareaInput.vue";
 import PostUserProfile from "./PostUserProfile.vue";
 import {useForm} from "@inertiajs/vue3";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+const editor = ClassicEditor;
+
+const editorConfig = {
+    mediaEmbed: {
+        removeProviders: [
+            'dailymotion',
+            'spotify',
+            'youtube',
+            'vimeo',
+            'instagram',
+            'twitter',
+            'googleMaps',
+            'flickr',
+            'facebook'
+        ]
+    },
+    toolbar: [
+        'bold',
+        'italic',
+        '|',
+        'bulletedList',
+        'numberedList',
+        '|',
+        'heading',
+        '|',
+        'outdent',
+        'indent',
+        '|',
+        'link',
+        '|',
+        'blockQuote'
+    ],
+}
 
 const props = defineProps({
     post: {
