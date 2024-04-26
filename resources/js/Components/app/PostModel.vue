@@ -50,24 +50,26 @@
                                     <!--                                    <TextareaInput v-model="form.body" class="mb-3 py-1 px-2 w-full" />-->
                                 </div>
 
-                                <div class="py-2 px-3">
+                                <div class="p-3 flex justify-between gap-6">
                                     <button
                                         type="button"
-                                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold
+                                        class=" relative flex items-center justify-center rounded-md bg-indigo-600 py-2 text-sm font-semibold
                     text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
-                    focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full"
-                                        @click="submit"
+                    focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-[30%]"
+
                                     >
-                                        <PaperClipIcon
+                                        <PaperClipIcon class="w-4 h-4 mr-2" />
                                         Attach File
+
                                     </button>
                                     <button
                                         type="button"
-                                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold
+                                        class="flex items-center justify-center rounded-md bg-indigo-600 py-2 text-sm font-semibold
                     text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
-                    focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full"
+                    focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-[30%]"
                                         @click="submit"
                                     >
+                                        <BookmarkIcon class="w-4 h-4 mr-2"/>
                                         submit
                                     </button>
                                 </div>
@@ -82,7 +84,7 @@
 
 <script setup>
 import {computed, watch} from 'vue';
-import {XMarkIcon} from "@heroicons/vue/24/solid";
+import { XMarkIcon, PaperClipIcon, BookmarkIcon } from "@heroicons/vue/24/solid";
 import {
     TransitionRoot,
     TransitionChild,
