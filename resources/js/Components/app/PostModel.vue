@@ -34,9 +34,10 @@
                                     as="h3"
                                     class="flex items-center justify-between py-3 px-4 font-medium leading-6 bg-gray-100 text-gray-900"
                                 >
-                                    Update Post
-                                    <button @click="show = false" class="w-8 h-8 rounded-full hover:bg-black/5 transition  flex items-center justify-center">
-                                        <XMarkIcon class="w-4 h-4" />
+                                    {{form.id ? 'Update Post' : 'Create new Post'}}
+                                    <button @click="show = false"
+                                            class="w-8 h-8 rounded-full hover:bg-black/5 transition  flex items-center justify-center">
+                                        <XMarkIcon class="w-4 h-4"/>
                                     </button>
                                 </DialogTitle>
                                 <div class="p-4">
@@ -46,7 +47,7 @@
                                               :config="editorConfig">
 
                                     </ckeditor>
-<!--                                    <TextareaInput v-model="form.body" class="mb-3 py-1 px-2 w-full" />-->
+                                    <!--                                    <TextareaInput v-model="form.body" class="mb-3 py-1 px-2 w-full" />-->
                                 </div>
 
                                 <div class="py-2 px-3">
@@ -71,7 +72,7 @@
 
 <script setup>
 import {computed, watch} from 'vue';
-import { XMarkIcon } from "@heroicons/vue/24/solid";
+import {XMarkIcon} from "@heroicons/vue/24/solid";
 import {
     TransitionRoot,
     TransitionChild,
@@ -152,13 +153,24 @@ function closeModal() {
 }
 
 function submit() {
-    form
-        .put(route('post.update', props.post.id),{
+    if (form.id) {
+        form.put(route('post.update', props.post.id), {
             preserveScroll: true,
             onSuccess: () => {
                 show.value = false
+                form.reset()
             }
         })
+    } else {
+        form.post(route('post.create'), {
+            preserveScroll: true,
+            onSuccess: () => {
+                show.value = false
+                form.reset()
+            }
+        })
+    }
+
 }
 
 </script>
