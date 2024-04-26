@@ -31,7 +31,12 @@ Route::group(["middleware" => "auth"], function () {
 //    -----------------------Posts------------------
     Route::post('/posts', [PostController::class, 'store'])
         ->name('post.create');
+    Route::put('/post/{post}', [PostController::class, 'update'])
+        ->name('post.update');
 });
+
+
+
 
 //--------------------check_profile---------------------------------------
 Route::get('/u/{user:username}', [ProfileController::class, 'index'])
