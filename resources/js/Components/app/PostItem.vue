@@ -2,21 +2,25 @@
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {PencilIcon, TrashIcon , EllipsisVerticalIcon} from '@heroicons/vue/20/solid'
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
-import PostModel from "./PostModel.vue";
-import {ref} from "vue";
 import PostUserProfile from "./PostUserProfile.vue";
 
-const showEditModel = ref(false)
 
-defineProps({
+const props = defineProps({
     post: Object
 })
 
+const emit = defineEmits(['editClick'])
 
 function isImage(attachment) {
     const mime = attachment.mime.split('/')
     return mime[0].toLowerCase() === 'image'
 }
+
+function openEditModal() {
+    emit('editClick', props.post)
+}
+
+
 </script>
 
 <template>
@@ -49,7 +53,7 @@ function isImage(attachment) {
                         <div class="px-1 py-1">
                             <MenuItem v-slot="{ active }">
                                 <button
-                                    @click="showEditModel = true"
+                                    @click="openEditModal"
                                     :class="[
                   active ? 'bg-indigo-500 text-white' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
@@ -73,7 +77,7 @@ function isImage(attachment) {
                                         class="mr-2 h-5 w-5"
                                         aria-hidden="true"
                                     />
-                                    Edit
+                                    Delete
                                 </button>
                             </MenuItem>
                         </div>
@@ -114,6 +118,7 @@ function isImage(attachment) {
                     <img v-if="isImage(attachment)"
                          :src="attachment.url"
                          class="object-cover aspect-square"
+                         alt="attachment"
                     />
 
                     <template v-else>
@@ -150,5 +155,4 @@ function isImage(attachment) {
             </button>
         </div>
     </div>
-    <PostModel :post="post" v-model="showEditModel" />
 </template>
