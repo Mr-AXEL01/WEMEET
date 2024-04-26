@@ -60,7 +60,7 @@
                                     >
                                         <PaperClipIcon class="w-4 h-4 mr-2" />
                                         Attach File
-
+                                        <input @click.stop type="file" multiple class="absolute left-0 top-0 right-0 bottom-0 opacity-0"/>
                                     </button>
                                     <button
                                         type="button"
