@@ -4,6 +4,7 @@ import {PencilIcon, TrashIcon , EllipsisVerticalIcon} from '@heroicons/vue/20/so
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 import PostUserProfile from "./PostUserProfile.vue";
 import { router } from "@inertiajs/vue3";
+import { isImage } from '../../helpers.js'
 
 
 const props = defineProps({
@@ -11,11 +12,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['editClick'])
-
-function isImage(attachment) {
-    const mime = attachment.mime.split('/')
-    return mime[0].toLowerCase() === 'image'
-}
 
 function openEditModal() {
     emit('editClick', props.post)
@@ -99,7 +95,7 @@ function deletePost() {
             <Disclosure v-slot="{ open }">
                 <div class="ck-content-output" v-if="!open" v-html="post.body.substring(0,100)"/>
                 <template v-if="post.body.length > 100">
-                    <DisclosurePanel class="">
+                    <DisclosurePanel >
                         <div class="ck-content-output" v-html="post.body"/>
                     </DisclosurePanel>
                     <div class="flex justify-end">

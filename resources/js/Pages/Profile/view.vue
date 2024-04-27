@@ -130,7 +130,7 @@
 import {TabGroup, TabList, Tab, TabPanels, TabPanel} from '@headlessui/vue';
 import AuthenticationLayout from "../../Layouts/AuthenticationLayout.vue";
 import TabItem from "./Partials/TabItem.vue";
-import {PencilIcon, CameraIcon , PhotoIcon, XMarkIcon, CheckIcon} from '@heroicons/vue/24/solid';
+import { CameraIcon , PhotoIcon, XMarkIcon, CheckIcon} from '@heroicons/vue/24/solid';
 import {useForm, usePage} from "@inertiajs/vue3";
 import {computed, ref} from "vue";
 import Edit from "./Edit.vue";
@@ -206,7 +206,7 @@ function submitCoverImage() {
 
 function submitAvatarImage() {
     imagesForm.post(route('profile.updateImages'), {
-        onSuccess: (user) => {
+        onSuccess: () => {
             resetAvatarImage()
             setTimeout(() => {
                 showNotification.value = false;
