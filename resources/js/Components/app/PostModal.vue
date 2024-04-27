@@ -1,6 +1,6 @@
 <script setup>
 import {computed, ref, watch} from 'vue';
-import {XMarkIcon, PaperClipIcon, BookmarkIcon, ArrowDownIcon } from "@heroicons/vue/24/solid";
+import {XMarkIcon, PaperClipIcon, BookmarkIcon, ArrowDownIcon , ArrowUturnLeftIcon } from "@heroicons/vue/24/solid";
 import {
     TransitionRoot,
     TransitionChild,
@@ -60,9 +60,10 @@ const attachmentFiles = ref([])
 
 
 const form = useForm({
-    id: null,
     body: '',
-    attachments: []
+    attachments: [],
+    deleted_file_ids: [],
+    _method: 'POST'
 })
 
 const show = computed({
@@ -70,29 +71,37 @@ const show = computed({
     set: (value) => emit('update:modelValue', value)
 })
 
+const computedAttachments = computed(() => {
+    return [...attachmentFiles.value, ...(props.post.attachments || [])]
+})
+
 
 const emit = defineEmits(['update:modelValue', 'hide'])
 
 watch(() => props.post, () => {
-    form.id = props.post.id
-    form.body = props.post.body
+    form.body = props.post.body || ''
 })
 
 
 function closeModal() {
     show.value = false
+    emit('hide')
     resetModal();
 }
 
 function resetModal() {
     form.reset()
     attachmentFiles.value = []
+    if (props.post.attachments) {
+        props.post.attachments.forEach(file => file.deleted = false)
+    }
 }
 
 function submit() {
     form.attachments = attachmentFiles.value.map(myFile => myFile.file)
-    if (form.id) {
-        form.put(route('post.update', props.post.id), {
+    if (props.post.id) {
+        form._method = 'PUT'
+        form.post(route('post.update', props.post.id), {
             preserveScroll: true,
             onSuccess: () => {
                 closeModal()
@@ -138,7 +147,17 @@ async function readFile(file) {
 }
 
 function removeFile(myFile) {
-    attachmentFiles.value = attachmentFiles.value.filter(f => f !== myFile)
+    if (myFile.file) {
+        attachmentFiles.value = attachmentFiles.value.filter(f => f !== myFile)
+    } else {
+        form.deleted_file_ids.push(myFile.id)
+        myFile.deleted = true
+    }
+}
+
+function undoDeleted(myFile) {
+    myFile.deleted = false;
+    form.deleted_file_ids = form.deleted_file_ids.filter(id => myFile.id !== id)
 }
 
 
@@ -182,7 +201,7 @@ function removeFile(myFile) {
                                     class="flex items-center justify-between py-3 px-4 font-medium leading-6 bg-gray-100
                                     text-gray-900"
                                 >
-                                    {{ form.id ? 'Update Post' : 'Create new Post' }}
+                                    {{ post.id ? 'Update Post' : 'Create new Post' }}
                                     <button @click="closeModal()"
                                             class="w-8 h-8 rounded-full hover:bg-black/5 transition  flex items-center
                                             justify-center">
@@ -198,12 +217,17 @@ function removeFile(myFile) {
                                     </ckeditor>
 
                                     <div class="grid gap-3 my-3" :class="[
-                                        attachmentFiles.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
+                                        computedAttachments.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
                                     ]">
-                                        <template v-for="myFile of attachmentFiles">
-
+                                        <template v-for="(myFile, ind) of computedAttachments">
                                             <div class=" group aspect-square bg-blue-100 flex flex-col items-center
-                                                justify-center text-gray-500 relative">
+                                                justify-center text-gray-500 relative"
+                                            >
+                                                <div v-if="myFile.deleted" class="absolute z-10 flex justify-between items-center left-0 bottom-0 right-0 py-2 px-3 text-sm
+                                                bg-black text-white">
+                                                    To be Deleted
+                                                    <ArrowUturnLeftIcon @click="undoDeleted(myFile)" class="w-4 h-4 cursor-pointer" />
+                                                </div>
 
                                                 <button @click="removeFile(myFile)"
                                                         class="absolute z-20 right-2 top-2 w-7 h-7 flex items-center
@@ -211,18 +235,20 @@ function removeFile(myFile) {
                                                         hover:bg-black/40">
                                                     <XMarkIcon class="w-3 h-3"/>
                                                 </button>
-                                                <img v-if="isImage(myFile.file)"
+                                                <img v-if="isImage(myFile.file || myFile)"
                                                      :src="myFile.url"
                                                      class="object-cover w-full aspect-square"
+                                                     :class="myFile.deleted ? 'opacity-50' : '' "
                                                      alt="attachment"
                                                 />
-                                                <template v-else>
+                                                <div v-else class="flex flex-col items-center justify-center"
+                                                     :class="myFile.deleted ? 'opacity-50' : ''">
                                                     <PaperClipIcon class="w-10 h-10 mb-3" />
                                                     <small class="text-center">
-                                                        {{ myFile.file.name }}
+                                                        {{ (myFile.file || myFile).name}}
                                                     </small>
 
-                                                </template>
+                                                </div>
                                             </div>
                                         </template>
                                     </div>
