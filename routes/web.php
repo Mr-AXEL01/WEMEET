@@ -21,17 +21,24 @@ Route::post('/logout',[LoginController::class, 'destroy'])->middleware('auth')->
 
 
 Route::group(["middleware" => "auth"], function () {
-
     Route::patch('/profile', [ProfileController::class, 'update'])
         ->name('profile.update');
     Route::post('/profile/update-images', [ProfileController::class, 'updateImage'])
         ->name('profile.updateImages');
 
-
 //    -----------------------Posts------------------
     Route::post('/posts', [PostController::class, 'store'])
         ->name('post.create');
+    Route::put('/post/{post}', [PostController::class, 'update'])
+        ->name('post.update');
+    Route::delete('/post/{post}', [PostController::class, 'destroy'])
+        ->name('post.destroy');
+    Route::get('/download/{attachment}', [PostController::class, 'downloadAttachment'])
+        ->name('post.download');
 });
+
+
+
 
 //--------------------check_profile---------------------------------------
 Route::get('/u/{user:username}', [ProfileController::class, 'index'])
