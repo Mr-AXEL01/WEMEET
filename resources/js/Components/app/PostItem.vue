@@ -1,6 +1,6 @@
 <script setup>
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
-import {PencilIcon, TrashIcon , EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
+import {PencilIcon, TrashIcon , EllipsisVerticalIcon, ArrowDownTrayIcon } from '@heroicons/vue/20/solid'
 import { ChatBubbleLeftRightIcon, HandThumbUpIcon } from '@heroicons/vue/24/outline';
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 import PostUserProfile from "./PostUserProfile.vue";
@@ -121,14 +121,12 @@ function deletePost() {
                     </div>
 
                     <!---------to download --------->
-                    <button
-                        class="opacity-0 z-20 group-hover:opacity-100 transition-all w-8 h-8 flex items-center justify-center text-gray-100 bg-gray-700 rounded absolute right-2 top-2 cursor-pointer hover:bg-gray-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
-                        </svg>
-                    </button>
+                    <a @click.stop :href="route('post.download', attachment)"
+                        class="opacity-0 z-20 group-hover:opacity-100 transition-all w-8 h-8 flex items-center
+                        justify-center text-gray-100 bg-gray-700 rounded absolute right-2 top-2
+                        cursor-pointer hover:bg-gray-800">
+                        <ArrowDownTrayIcon class="w-4 h-4" />
+                    </a>
 
                     <img v-if="isImage(attachment)"
                          :src="attachment.url"
