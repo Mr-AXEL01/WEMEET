@@ -4,14 +4,14 @@ import {PencilIcon, TrashIcon , EllipsisVerticalIcon, ArrowDownTrayIcon, PaperCl
 import { ChatBubbleLeftRightIcon, HandThumbUpIcon } from '@heroicons/vue/24/outline';
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 import PostUserProfile from "./PostUserProfile.vue";
-import { router } from "@inertiajs/vue3";
+import {router, usePage} from "@inertiajs/vue3";
 import { isImage } from '../../helpers.js'
 
 
 const props = defineProps({
     post: Object
 })
-
+const authUser = usePage().props.auth.user;
 const emit = defineEmits(['editClick', 'attachmentClick'])
 
 function openEditModal() {
@@ -37,7 +37,7 @@ function openAttachment(ind) {
     <div class="bg-white border rounded p-4 mb-3">
         <div class="flex items-center justify-between mb-3">
             <PostUserProfile :post="post" />
-            <Menu as="div" class="relative inline-block text-left">
+            <Menu v-if="authUser.id === post.user.id" as="div" class="relative inline-block text-left">
                 <div>
                     <MenuButton
                         class="w-8 h-8 rounded-full hover:bg-black/5 transition flex items-center justify-center"
