@@ -10,11 +10,12 @@ defineProps({
     }
 })
 
+
 </script>
 
 <template>
     <div class="flex items-center gap-2">
-        <a href="javascript:void(0)">
+        <a :href="`/u/${post.user ? post.user.username : ''}`">
             <img :src="post.user.avatar_url || '/img/default_avatar.jpg'"
                  class="w-[40px] h-[40px] object-cover rounded-full border border-2 transition-all
                      hover:border-blue-500"
@@ -22,7 +23,7 @@ defineProps({
         </a>
         <div>
             <h4 class="font-bold">
-                <a href="javascript:void(0)" class="hover:underline">
+                <a :href="`/u/${post.user ? post.user.username : ''}`" class="hover:underline">
                     {{ post.user.name }}
                 </a>
                 <template v-if="post.group">

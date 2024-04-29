@@ -1,8 +1,11 @@
 <template>
     <section class="h-full overflow-hidden flex flex-col p-3 bg-gray-100">
-        <header class="flex justify-between w-[95%] mx-auto">
+        <header class="flex items-center justify-between w-[95%] h-10 mx-auto">
             <Link href="/">
-                <h1 class="font-bold text-2xl">WEMEET</h1>
+                <div class=" w-24 flex items-center ">
+                    <WemeetLogo  class=" flex-none" />
+                    <h1 class="font-bold text-xl text-sky-900 -ml-5">EMEET</h1>
+                </div>
             </Link>
             <nav class="flex">
                 <ul v-if="!authUser" class="flex space-x-6">
@@ -47,6 +50,7 @@
 <script setup>
 import {Link, usePage} from "@inertiajs/vue3";
 import {UserPlusIcon , UserCircleIcon , ArrowRightEndOnRectangleIcon} from "@heroicons/vue/24/solid";
+import WemeetLogo from "../Components/WemeetLogo.vue";
 
 const authUser = usePage().props.auth.user;
 
